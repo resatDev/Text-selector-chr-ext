@@ -11,7 +11,7 @@ import { twitter, tumblr } from './socialMedia'
 
 
 window.addEventListener('click', (event) => {
-
+    console.log('osman')
     //mouse click coordinates
     const [cordX, cordY] = getPosition(event);
 
