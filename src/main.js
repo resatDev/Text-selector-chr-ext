@@ -10,7 +10,7 @@ import { isQuote } from './quoting'
 import { twitter, tumblr } from './socialMedia'
 
 
-window.addEventListener('click', (event) => {
+window.addEventListener('mouseup', (event) => {
     //mouse click coordinates
     const [cordX, cordY] = getPosition(event);
 
@@ -40,6 +40,16 @@ window.addEventListener('click', (event) => {
                 })
             }
 
+
+        //If string contains a quotation for social media => twitter
+        else if(isQuote(selectedString)[1] == 'twitter'){
+            twitter(isQuote(selectedString)[0])
+        }
+
+        //If string contains a quotation for social media => twitter
+        else if(isQuote(selectedString)[1] == 'tumblr'){
+            tumblr(isQuote(selectedString)[0])
+        }
         //If string contains degree unit => Kelvin
         else if(isDegree(selectedString).toUpperCase() == 'K'){
             selectionPopup.setPopupConfig('Degree Converter', (Number(isNumber(selectedString)[0]) + 273).toString())
@@ -64,17 +74,6 @@ window.addEventListener('click', (event) => {
             selectionPopup.setPopupConfig('Basic Numerical Calculation', (calculate(parseCalculationString(selectedString))).toString())
         }
 
-        //If string contains a quotation for social media => twitter
-        else if(isQuote(selectedString)[1] == 'twitter'){
-            twitter(isQuote(selectedString)[0])
-        }
-
-        //If string contains a quotation for social media => twitter
-        else if(isQuote(selectedString)[1] == 'tumblr'){
-            tumblr(isQuote(selectedString)[0])
-        }
-
-
         //If string is unqualified
         else{
             selectionPopup.setPopupConfigDefault()
@@ -82,16 +81,3 @@ window.addEventListener('click', (event) => {
     }
 
 })
-
-var style = document.createElement('link');
-style.rel = 'stylesheet';
-style.type = 'text/css';
-style.href = chrome.extension.getURL('./../assests/style.css');
-(document.head||document.documentElement).appendChild(style);
-
-var fontAwesome = document.createElement('link');
-fontAwesome.rel = 'stylesheet';
-fontAwesome.type = 'text/css';
-fontAwesome.href = chrome.extension.getURL('https://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css');
-(document.head||document.documentElement).appendChild(fontAwesome);
-

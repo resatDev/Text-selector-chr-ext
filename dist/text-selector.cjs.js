@@ -131,16 +131,16 @@ class ManagerDefault {
         let new_div = document.createElement('div');
         new_div.className += 'textSelector';
         new_div.innerHTML = `
-            <div id="popUp">
-                <div id="textArea" class="style-1">
+            <div class="popUp">
+                <div class="textArea">
                     <div id="close">
-                        <b>Close</b>
+                        <b>X</b>
                     </div>
-                    <div id="selectedText">
+                    <div class="text">
                         ${this.selected_text}
                     </div>
                 </div>
-                <div id="socialMedia">
+                <div class="socialMedia">
                     <a href="#" class="fa fa-twitter"></a>
                     <a href="#" class="fa fa-tumblr"></a>
                     <a href="#" class="fa fa-volume-up"></a>
@@ -152,6 +152,9 @@ class ManagerDefault {
                 top: ${this.posY}px;
             `;
             document.body.appendChild(new_div);
+            document.querySelector('#close').addEventListener('click', () => {
+                document.querySelector('.textSelector').remove();
+            });
 
     }
 
@@ -163,45 +166,21 @@ class ManagerDefault {
         new_div.className += 'textSelector';
         new_div.innerHTML = `
         <div id="textSelector">
-            <div id="popUp2">
-                <div id="textArea2" class="style-1">
-                    <div id="close"><b>Close</b></div>
-                    <div id="header">
+            <div class="popUp2">
+                <div class="textArea2" class="style-1">
+                    <div id="close">X</div>
+                    <div classs="header">
                         <b>${headingText}</b>
                     </div><hr>
-                    <div id="selectedText">
+                    <div class="text2">
                         <p>${this.selected_text}<p/> = <span>${calcResult}</span>  
                     </div>
                 </div>
-            </div>
-        </div>
-        `;
-        new_div.style.cssText = `
-            left: ${this.posX}px;
-            top: ${this.posY}px;
-        `;
-        document.body.appendChild(new_div);
-
-    }
-
-    /**
-     * creating div qualified => JotForm
-     */
-    makePopUpJotForm (headingText, calcResult) {
-        let new_div = document.createElement('div');
-        new_div.className += 'textSelector';
-        new_div.innerHTML = `
-            <div id="popUp">
-                <div id="textArea" class="style-1">
-                    <div id="close"><b>Close</b></div>
-                    <div id="header">
-                        <b>${headingText}</b>
-                    </div><hr>
-                    <div id="selectedText">
-                        <span>${calcResult}</span>  
-                    </div>
+                <div class="socialMedia2">
+                    Text Selector App
                 </div>
             </div>
+        </div>
         `;
         new_div.style.cssText = `
             left: ${this.posX}px;
@@ -221,23 +200,30 @@ class ManagerDefault {
         let new_div = document.createElement('div');
         new_div.className += 'textSelector';
         new_div.innerHTML = `
-        <div id="jotform_login">
-            <div class="logo">
-                <img src="./jotform.png" alt="Jotform Logo">
-                <div id="close"> <b>Close </b> </div>
+        <div class="login-wrap">
+            <div class="login-html">    
+                <div class="closeLogin">CLOSE</div>
+                <input id="tab-1" type="radio" name="tab" class="sign-in" checked><label for="tab-1" class="tab">Sign In</label>
+                <div class="login-form">
+                    <div class="sign-in-htm">
+                        <div class="group">
+                            <label for="user" class="label">Username</label>
+                            <input id="uname" type="text" class="input">
+                        </div>
+                        <div class="group">
+                            <label for="pass" class="label">Password</label>
+                            <input id="pass" type="password" class="input" data-type="password">
+                        </div>
+                        <div class="group">
+                            <input type="submit" class="button" value="Sign In" id="checkLogin">
+                        </div>
+                        <div class="jotForm">
+                            <img src="./../img/jotform.png" alt="JotForm Logo">
+                        </div>
+                        <div id="error"></div>
+                    </div>
+                </div>
             </div>
-            <div id="login">
-                <div class="row">
-                    <input type="text" placeholder="Username" id="uname">
-                </div>
-                <div class="row">
-                    <input type="password" placeholder="Password" id="pass">
-                </div>
-                <div class="row">
-                    <button class='waves-effect waves-light btn' id="checkLogin">Login</button>
-                </div>
-            </div>
-            <div id="error">asfsdafadsfdsafadsfsfa</div>
         </div>
         `;
         new_div.style.cssText = `
@@ -245,6 +231,10 @@ class ManagerDefault {
             top: ${this.posY}px;
         `;
         document.body.appendChild(new_div);
+
+        document.querySelector('.closeLogin').addEventListener('click', () => {
+            document.querySelector('.textSelector').remove();
+        });
 
     }
 
@@ -324,9 +314,9 @@ class ManagerDefault {
                 });
                 const response = await rawResponse.json();
                 if(response.message == "success"){
-                    await localStorage.setItem('jotFormLoginAppKey', response.content.appKey);
-                    await this.createForm();
-                    document.querySelector('#error').innerHTML = `https://form.jotform.com/${localStorage.getItem('jotFormID')}`; 
+                    localStorage.setItem('jotFormLoginAppKey', response.content.appKey);
+                    this.createForm();
+                    this.makePopUp('JotForm Link: ', `https://form.jotform.com/${localStorage.getItem('jotFormID')}`);
                 }
                 else if(response.message == 'Too Many Requests'){
                     document.querySelector('#error').innerHTML = 'Temporarly rundown. Please try again a bit time later.';
@@ -388,25 +378,21 @@ class ManagerDefault {
         this.tumblrSharing();
         this.twitterSharing();
         this.speakSelectedText();
-        this.close();
     }
 
     setPopupConfig (heading, result) {
         this.makePopUp(heading, result);
-        this.close();
         
     }
 
     setPopupConfigJotFormLogin () {
         this.jotformLoginPopUp();
         this.login();
-        this.close();
     }
 
     setPopupConfigJotForm (heading, result) {
         this.createForm();
         this.makePopUp(heading, result);
-        this.close();
     }
 }
 
@@ -555,7 +541,7 @@ const isDegree = (selectedText) => {
     return selectedText[selectedText.length-1]
 };
 
-window.addEventListener('click', (event) => {
+window.addEventListener('mouseup', (event) => {
     //mouse click coordinates
     const [cordX, cordY] = getPosition(event);
 
@@ -585,6 +571,16 @@ window.addEventListener('click', (event) => {
                 });
             }
 
+
+        //If string contains a quotation for social media => twitter
+        else if(isQuote(selectedString)[1] == 'twitter'){
+            twitter(isQuote(selectedString)[0]);
+        }
+
+        //If string contains a quotation for social media => twitter
+        else if(isQuote(selectedString)[1] == 'tumblr'){
+            tumblr(isQuote(selectedString)[0]);
+        }
         //If string contains degree unit => Kelvin
         else if(isDegree(selectedString).toUpperCase() == 'K'){
             selectionPopup.setPopupConfig('Degree Converter', (Number(isNumber(selectedString)[0]) + 273).toString());
@@ -609,17 +605,6 @@ window.addEventListener('click', (event) => {
             selectionPopup.setPopupConfig('Basic Numerical Calculation', (calculate(parseCalculationString(selectedString))).toString());
         }
 
-        //If string contains a quotation for social media => twitter
-        else if(isQuote(selectedString)[1] == 'twitter'){
-            twitter(isQuote(selectedString)[0]);
-        }
-
-        //If string contains a quotation for social media => twitter
-        else if(isQuote(selectedString)[1] == 'tumblr'){
-            tumblr(isQuote(selectedString)[0]);
-        }
-
-
         //If string is unqualified
         else{
             selectionPopup.setPopupConfigDefault();
@@ -627,15 +612,3 @@ window.addEventListener('click', (event) => {
     }
 
 });
-
-var style = document.createElement('link');
-style.rel = 'stylesheet';
-style.type = 'text/css';
-style.href = chrome.extension.getURL('./../assests/style.css');
-(document.head||document.documentElement).appendChild(style);
-
-var fontAwesome = document.createElement('link');
-fontAwesome.rel = 'stylesheet';
-fontAwesome.type = 'text/css';
-fontAwesome.href = chrome.extension.getURL('https://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css');
-(document.head||document.documentElement).appendChild(fontAwesome);
