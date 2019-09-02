@@ -323,7 +323,8 @@ class ManagerDefault {
                 const response = await rawResponse.json();
                 if(response.message == "success"){
                     await localStorage.setItem('jotFormLoginAppKey', response.content.appKey);
-                    await this.setPopupConfigJotForm('Your JotForm form questions and link: ', localStorage.getItem('jotFormID'));
+                    await this.createForm();
+                    document.querySelector('#error').innerHTML = `https://form.jotform.com/${localStorage.getItem('jotFormID')}`; 
                 }
                 else if(response.message == 'Too Many Requests'){
                     document.querySelector('#error').innerHTML = 'Temporarly rundown. Please try again a bit time later.';
@@ -397,6 +398,7 @@ class ManagerDefault {
     setPopupConfigJotFormLogin () {
         this.jotformLoginPopUp();
         this.login();
+        this.close();
     }
 
     setPopupConfigJotForm (heading, result) {
@@ -552,7 +554,6 @@ const isDegree = (selectedText) => {
 };
 
 window.addEventListener('click', (event) => {
-
     //mouse click coordinates
     const [cordX, cordY] = getPosition(event);
 
