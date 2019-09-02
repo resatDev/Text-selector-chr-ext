@@ -1,0 +1,175 @@
+* {
+  margin: 0; }
+
+.card {
+  padding: 20px;
+  height: auto; }
+  .card .delete img {
+    width: 30px;
+    height: 30px;
+    float: right;
+    opacity: 0.9; }
+  .card .delete img:hover {
+    cursor: pointer;
+    opacity: 1; }
+  
+*{
+  padding: 0;
+  margin: 0;
+  list-style-type: none;
+  text-decoration: none;
+}
+.textSelector{
+  position: fixed;
+  display: block;
+  z-index: 99999999999;
+}
+.textSelector #popUp{
+  display: grid;
+  margin: 10px;
+  padding: 10px;
+  border: 1px solid silver;
+  border-radius: 5px;
+  background: rgb(143, 143, 143);
+  grid-template-columns: 1fr [social-s]50px[social-e];
+  grid-template-rows: 1fr;
+  box-shadow: 0px 2px 5px 0px;
+} 
+.textSelector #popUp2{
+  margin: 10px;
+  padding: 10px;
+  border: 1px solid silver;
+  border-radius: 5px;
+  background: rgb(143, 143, 143);
+  box-shadow: 0px 2px 5px 0px;
+}      
+.textSelector #textArea{
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 30px [text-s] 1fr [text-e];
+  grid-column: 1/2;
+  grid-row: 1fr;
+  font-family: 'Livvic', sans-serif;
+  font-size: 13px;
+  margin-right: 7px;
+  max-width: 300px;
+  max-height: 150px;
+  overflow-y : auto;
+  overflow-x : none;
+}
+.textSelector #textArea2{
+  font-family: 'Livvic', sans-serif;
+  font-size: 13px;
+  margin-right: 7px;
+  max-width: 300px;
+  max-height: 150px;
+}
+.textSelector #close{
+  color:20px;
+  transition: 0.2s all;
+}
+.textSelector #close b{
+  padding: 5px;
+}
+.textSelector #close:hover{
+  cursor: pointer;
+  opacity: 0.6;
+}
+.textSelector .selectedText{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.textSelector #socialMedia{
+  grid-column: social-s/social-e;
+  grid-row: 1fr;
+  border-left: 1px solid silver;
+  padding-left: 7px;
+}
+.textSelector .fa {
+  padding: 10px;
+  margin: 5px;
+  font-size: 8px;
+  width: 20px;
+  text-align: center;
+  text-decoration: none;
+  border-radius: 5px;
+  transition: 0.2s all;
+}
+.textSelector .fa:hover{
+  opacity: 0.7;
+  cursor: pointer;
+}
+.textSelector .fa-twitter {
+  background: #55ACEE;
+  color: white;
+}
+.textSelector .fa-tumblr {
+  background: #2c4762;
+  color: white;
+}
+.textSelector .fa-volume-up{
+  background: #212529;
+  color:white;
+}
+.textSelector #jotform_login{ 
+  background: rgb(255, 255, 255);
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: [logo-s]40px[logo-e login-s] 80px [login-e error-s] 20px [error-e];
+  width: 500px;
+  border: 1px solid silver;
+  border-radius: 5px;
+}
+.textSelector .logo{
+  margin-top: 20px;
+  grid-column: 1fr;
+  grid-row: logo-s/logo-e;
+}
+
+#jotform_login #close{
+  float:right;
+  margin-left: 300px;
+}
+.textSelector .logo img{
+  width: 120px;
+  height: 30px;
+}
+.textSelector #login{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  grid-column: 1fr;
+  grid-row: login-s/login-e;
+}
+.textSelector #error{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  grid-column: 1fr;
+  grid-row: error-s/error-e;
+  color:red;
+}
+.textSelector hr{
+  border: 1px solid black;
+}
+.style-1::-webkit-scrollbar-track
+{
+	box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+	border-radius: 10px;
+	background-color: #F5F5F5;
+}
+
+.style-1::-webkit-scrollbar
+{
+  height: 6px;
+  width: 6px;
+	background-color: #F5F5F5;
+}
+
+.style-1::-webkit-scrollbar-thumb
+{
+	border-radius: 10px;
+	box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+	background-color: #555;
+}
