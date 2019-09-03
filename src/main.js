@@ -9,18 +9,41 @@ import { isDegree } from './degreeConverter'
 import { isQuote } from './quoting'
 import { twitter, tumblr } from './socialMedia'
 
+var selectedChangingText = []
+var selectedForMouseBool = false;
+var selectedForMouse = '';
 
-window.addEventListener('mouseup', (event) => {
+window.addEventListener('mousedown', () => {
+    selectedForMouseBool = true;
+})
+window.addEventListener('mouseup', () => {
+    let selected = document.getSelection().toString();
+    if(selected){
+        selectedForMouse = selected;
+        textSelectorEvent(selectedForMouse)
+    }
+    selectedForMouseBool = false;
+})
+
+document.addEventListener('selectionchange', () => {
+    selectedChangingText.push(document.getSelection().toString())
+    if(selectedChangingText[selectedChangingText.length-1] != selectedForMouse && !selectedForMouseBool){
+        textSelectorEvent(selectedChangingText[selectedChangingText.length-1])
+    }
+})
+
+
+const textSelectorEvent = (selectedtextmixed) => {
     //mouse click coordinates
     const [cordX, cordY] = getPosition(event);
 
     //selected object
-    const selectedString = getSelected();
+    const selectedString = selectedtextmixed;
 
     //ManagerDefault object
     let selectionPopup = new ManagerDefault(selectedString, cordX, cordY)
 
-    if(selectedString && !document.querySelector('.textSelector') && !document.querySelector('.textSelectorDefault')){ 
+    if(selectedString != '' && !document.querySelector('.textSelector') && !document.querySelector('.textSelectorDefault')){ 
         
         //JotForm Processing
         if(selectedString.slice(0, 7) == 'JotForm'){
@@ -79,5 +102,11 @@ window.addEventListener('mouseup', (event) => {
             selectionPopup.setPopupConfigDefault()
         }
     }
+    selectedChangingText = []
+    selectedForMouse = '' 
+}
 
-})
+
+
+
+      

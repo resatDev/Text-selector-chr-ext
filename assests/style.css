@@ -230,6 +230,7 @@ hr{
   box-shadow: 2px 3px 5px 1px;
   border: 1px solid #294562;
 }
+
 .socialMedia2{
   display: flex;
   align-items: center;
@@ -242,6 +243,7 @@ hr{
   border: 1px solid #294562;
   color: black;
 }
+
 .textArea2{
   grid-row: text-s/text-e;
   grid-column: 1fr;
@@ -253,5 +255,14 @@ hr{
   height: 100%;
   overflow-y: auto;
   overflow-x: auto;
+}
+
+#checkLogin{
+  transition: 0.2s all;
+}
+
+#checkLogin:hover{
+  opacity: 0.7;
+  cursor: pointer;
 }
 .text2::-webkit-scrollbar {width: 0px !important}

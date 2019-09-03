@@ -14,7 +14,7 @@ class ManagerDefault {
      *
      */
 
-    constructor(selected_text, posX, posY){
+    constructor(selected_text, posX=1350, posY=20){
         this.selected_text = selected_text;
         this.posX = posX;
         this.posY = posY;
@@ -122,7 +122,7 @@ class ManagerDefault {
                             <input type="submit" class="button" value="Sign In" id="checkLogin">
                         </div>
                         <div class="jotForm">
-                            <img src="./../img/jotform.png" alt="JotForm Logo">
+                           <a href="https://turk.jotform.com/myforms" target="_blank"> <img src="./../img/jotform2.png" alt="JotForm Logo"> </a>
                         </div>
                         <div id="error"></div>
                     </div>

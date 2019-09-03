@@ -113,7 +113,7 @@
          *
          */
 
-        constructor(selected_text, posX, posY){
+        constructor(selected_text, posX=1350, posY=20){
             this.selected_text = selected_text;
             this.posX = posX;
             this.posY = posY;
@@ -221,7 +221,7 @@
                             <input type="submit" class="button" value="Sign In" id="checkLogin">
                         </div>
                         <div class="jotForm">
-                            <img src="./../img/jotform.png" alt="JotForm Logo">
+                           <a href="https://turk.jotform.com/myforms" target="_blank"> <img src="./../img/jotform2.png" alt="JotForm Logo"> </a>
                         </div>
                         <div id="error"></div>
                     </div>
@@ -400,19 +400,6 @@
     }
 
     /**
-     * @return {string}
-     */
-    const getSelected = () => {
-        if(window.getSelection) { return window.getSelection().toString(); }
-        else if(document.getSelection) { return document.getSelection().toString(); }
-        else {
-            var selection = document.selection && document.selection.createRange();
-            if(selection.text) { return selection.text.toString(); }
-            return false;
-        }
-     };
-
-    /**
      * 
      * @param {Event} event
      * @return {Array}
@@ -544,17 +531,41 @@
         return selectedText[selectedText.length-1]
     };
 
-    window.addEventListener('mouseup', (event) => {
+    var selectedChangingText = [];
+    var selectedForMouseBool = false;
+    var selectedForMouse = '';
+
+    window.addEventListener('mousedown', () => {
+        selectedForMouseBool = true;
+    });
+    window.addEventListener('mouseup', () => {
+        let selected = document.getSelection().toString();
+        if(selected){
+            selectedForMouse = selected;
+            textSelectorEvent(selectedForMouse);
+        }
+        selectedForMouseBool = false;
+    });
+
+    document.addEventListener('selectionchange', () => {
+        selectedChangingText.push(document.getSelection().toString());
+        if(selectedChangingText[selectedChangingText.length-1] != selectedForMouse && !selectedForMouseBool){
+            textSelectorEvent(selectedChangingText[selectedChangingText.length-1]);
+        }
+    });
+
+
+    const textSelectorEvent = (selectedtextmixed) => {
         //mouse click coordinates
         const [cordX, cordY] = getPosition(event);
 
         //selected object
-        const selectedString = getSelected();
+        const selectedString = selectedtextmixed;
 
         //ManagerDefault object
         let selectionPopup = new ManagerDefault(selectedString, cordX, cordY);
 
-        if(selectedString && !document.querySelector('.textSelector') && !document.querySelector('.textSelectorDefault')){ 
+        if(selectedString != '' && !document.querySelector('.textSelector') && !document.querySelector('.textSelectorDefault')){ 
             
             //JotForm Processing
             if(selectedString.slice(0, 7) == 'JotForm'){
@@ -613,7 +624,8 @@
                 selectionPopup.setPopupConfigDefault();
             }
         }
-
-    });
+        selectedChangingText = [];
+        selectedForMouse = ''; 
+    };
 
 }));
