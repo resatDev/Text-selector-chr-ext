@@ -89,8 +89,9 @@ JotForm --> To start the process
 ![Alt desc](https://github.com/softyak/Text-selector-chr-ext/blob/master/img/podo.gif)
 
 
+###### Powered By
 
-
+[Reşat Memiş](https://www.linkedin.com/in/re%C5%9Fat-memi%C5%9F-7b9996150/)
 
 
 
