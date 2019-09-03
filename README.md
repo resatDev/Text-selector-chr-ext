@@ -13,6 +13,11 @@ Text - Selector is a Chrome Extension which provide the End Users can use text t
   * Clock Unit Converter
   * Basic Numerical Problems
   
+  
+  #### For the YouTube tutorial video
+  
+  [![IMAGE ALT TEXT HERE](http://img.youtube.com/vi/AFdGt6ZqxGw/0.jpg)](http://www.youtube.com/watch?v=AFdGt6ZqxGw)
+
 
 ### Features
 
