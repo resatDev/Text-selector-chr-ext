@@ -73,6 +73,14 @@ Basic Numerical Problems Solver give opportunity to solve some basic numerical p
   - 3+56+6
   - 1564654151+5565465413*25641564-6546544984
   - 3 + 25 + 6
+  
+#### 5. Social Media Sharing
+
+To be or not to be:twitter  --> share with twitter
+
+To be or not to be:tumblr   --> share with tumblr
+
+
 
 # JotForm Users Opportunity
 
