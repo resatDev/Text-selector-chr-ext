@@ -141,9 +141,9 @@ class ManagerDefault {
                     </div>
                 </div>
                 <div class="socialMedia">
-                    <a href="#" class="fa fa-twitter"></a>
-                    <a href="#" class="fa fa-tumblr"></a>
-                    <a href="#" class="fa fa-volume-up"></a>
+                    <i class="fa fa-twitter"></i>
+                    <i class="fa fa-tumblr"></i>
+                    <i class="fa fa-volume-up"></i>
                 </div>
             </div>        
             `;

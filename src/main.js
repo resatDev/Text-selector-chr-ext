@@ -1,5 +1,4 @@
 import ManagerDefault from './managerDefault';
-import { getSelected } from './getSelected'
 import { getPosition } from './getPosition'
 import { currencyExchange, checkCurrency } from './getCurrency'
 import { isNumber } from './checkNumber'
